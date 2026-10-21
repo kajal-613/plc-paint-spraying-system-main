@@ -1,0 +1,21 @@
+flowchart TD
+    A(["START"]) --> B["Initialize PLC and Reset Counter"]
+    B --> C{"Process Start pressed? (X2)"}
+    C -- No --> B
+    C -- Yes --> D["Start Conveyor Motor (Y1)"]
+    D --> E["Detect object using Proximity Sensor (X0)"]
+    E --> F["Increment Counter (C0)"]
+    F --> G{"Counter reached 15 objects?"}
+    G -- No --> D
+    G -- Yes --> H["Stop Conveyor Motor (Y1)"]
+    H --> I["Switch ON Paint Spray (Y0)"]
+    I --> J["Start Timer (T0) for 25 seconds"]
+    J --> K{"Timer T0 completed?"}
+    K -- No --> I
+    K -- Yes --> L["Switch OFF Paint Spray (Y0)"]
+    L --> M["Reset Counter (C0)"]
+    M --> N["Restart Conveyor Motor (Y1)"]
+    N --> O{"Process Stop pressed? (X1)"}
+    O -- No --> D
+    O -- Yes --> P["Stop system and switch OFF outputs (Y0, Y1)"]
+    P --> Q(["END"])

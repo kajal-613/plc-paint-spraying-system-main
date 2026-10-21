@@ -1,0 +1,8 @@
+flowchart LR
+    X2["Process Start Switch (X2)"] --> PLC
+    X1["Process Stop Switch (X1)"] --> PLC
+    X0["Proximity Sensor (X0)"] --> PLC
+    C0["Counter (C0)"] --> PLC
+    T0["Timer (T0)"] --> PLC
+    PLC["PLC Controller"] --> Y0["Paint Spray (Y0)"]
+    PLC --> Y1["Conveyor Motor (Y1)"]

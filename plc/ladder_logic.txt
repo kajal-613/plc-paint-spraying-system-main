@@ -1,0 +1,12 @@
+Ladder logic in text form (corrected version, matches diagrams/svg/ladder_diagram_corrected.svg)
+Timer T0 K250 = 25 s (100 ms time base)
+
+Rung 1   (X2 OR M0) AND NOT X1                 -> OUT M0      ; system run (seal-in)
+Rung 2   M0 AND NOT M1 AND X0                  -> OUT C0 K15  ; count objects
+Rung 3   C0                                    -> SET M1      ; 15 counted
+Rung 4   M1                                    -> OUT T0 K250 ; 25 s spray timer
+Rung 5   M0 AND M1 AND NOT T0                  -> OUT Y0      ; paint spray
+Rung 6   M0 AND NOT M1                         -> OUT Y1      ; conveyor motor
+Rung 7   (T0 OR X1)                            -> RST C0
+Rung 8   (T0 OR X1)                            -> RST M1
+END
